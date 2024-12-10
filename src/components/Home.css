@@ -1,0 +1,13 @@
+.image-carousel {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Makes snapping to images smoother */
+  }
+  
+  .image-carousel img {
+    width: 200px;
+    height: auto;
+    margin-right: 10px;
+    scroll-snap-align: start; /* Ensures images align to the start of their container */
+    padding: 5px; /* Added for better visual spacing */
+  }
