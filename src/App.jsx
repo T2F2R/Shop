@@ -5,6 +5,7 @@ import Products from './components/Products';
 import Products_detail from './components/Products_detail';
 import About from './components/About';
 import Sign_in from './components/Sign_in';
+import Register from './components/Register';
 import ProtectedRoute from './ProtectedRoute';
 import './styles/common.css'
 import './styles/reset.css'
@@ -20,6 +21,7 @@ const App = () => {
               <Route path="/products/:id" element={<Products_detail />} /> {/* Страница детали товара */}
               <Route path='/about' element={<About />} /> {/* Страница о нас */}
               <Route path='/sign_in' element={<Sign_in />} /> {/* Страница авторизации */}
+              <Route path="/register" element={<Register />} /> {/* Страница регистрации */}
             </Routes>
           </div>
         </Router>

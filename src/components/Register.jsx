@@ -4,39 +4,35 @@ import Footer from "./footer/Footer";
 import axios from "axios";
 import styles from "./sign.module.css";
 
-const Sign_in = () => {
+const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost/login.php", {
+            const response = await axios.post("http://localhost/register.php", {
                 username,
                 password,
             });
 
             if (response.data.success) {
-                localStorage.setItem("authToken", "your_secret_token");
-                window.location.href = "/products";
+                alert("Регистрация успешна! Теперь вы можете войти.");
+                window.location.href = "/sign_in";
             } else {
                 alert(response.data.message);
             }
         } catch (error) {
-            console.error("Ошибка авторизации:", error);
+            console.error("Ошибка регистрации:", error);
         }
-    };
-
-    const handleRegisterRedirect = () => {
-        window.location.href = "/register";
     };
 
     return (
         <>
             <Header />
             <div className={styles["auth-container"]}>
-                <h1 className={styles["auth-title"]}>Вход</h1>
-                <form className={styles["auth-form"]} onSubmit={handleLogin}>
+                <h1 className={styles["auth-title"]}>Регистрация</h1>
+                <form className={styles["auth-form"]} onSubmit={handleRegister}>
                     <input
                         type="text"
                         placeholder="Имя пользователя"
@@ -52,13 +48,6 @@ const Sign_in = () => {
                         className={styles["auth-input"]}
                     />
                     <button type="submit" className={styles["auth-button"]}>
-                        Войти
-                    </button>
-                    <button
-                        type="button"
-                        className={styles["auth-register-button"]}
-                        onClick={handleRegisterRedirect}
-                    >
                         Зарегистрироваться
                     </button>
                 </form>
@@ -68,4 +57,4 @@ const Sign_in = () => {
     );
 };
 
-export default Sign_in;
+export default Register;
