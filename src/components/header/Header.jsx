@@ -21,7 +21,7 @@ function Header () {
                                 <Link to = {"/products"}>Каталог</Link>
                             </li>
                             <li>
-                                <Link to = {"/about"}>О нас</Link>
+                                <Link to = {"/cart"}>Корзина</Link>
                             </li>
                             <li>
                                 <Link to = {"/sign_in"} className='header__nav-btn'>Войти</Link>

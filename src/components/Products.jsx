@@ -13,32 +13,57 @@ const Products = () => {
         const fetchProducts = async () => {
             const token = localStorage.getItem("authToken");
             if (!token) {
-                // Если токен отсутствует, перенаправляем на страницу входа
-                window.location.href = "/sign_in";
+                alert("Вы не авторизованы!");
+                setLoading(false);
                 return;
             }
+
+            console.log("Токен: ", token);
 
             try {
                 const response = await axios.get("http://localhost/get_products.php", {
                     headers: {
-                        Authorization: token, // Отправка токена в заголовке
+                        Authorization: `Bearer ${token}`,
                     },
                 });
-                setProducts(response.data);
+                console.log("Ответ от сервера:", response.data);
+                if (response.data.success) {
+                    setProducts(response.data.products);
+                } else {
+                    alert(response.data.message);
+                }
             } catch (error) {
                 console.error("Ошибка при получении продуктов:", error);
-                if (error.response && error.response.status === 401) {
-                    // Если сервер вернул 401, перенаправляем на вход
-                    window.location.href = "/login";
-                }
             } finally {
                 setLoading(false);
             }
         };
-
         fetchProducts();
     }, []);
 
+    const addToCart = async (product_id) => {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+            alert("Вы не авторизованы!");
+            return;
+        }
+    
+        try {
+            const response = await axios.post(
+                "http://localhost/add_to_cart.php",
+                { product_id, quantity: 1 },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            alert(response.data.message);
+        } catch (error) {
+            console.error("Ошибка добавления в корзину:", error);
+        }
+    };
+    
     if (loading) {
         return <div>Загрузка...</div>;
     }
@@ -55,6 +80,7 @@ const Products = () => {
                                 <img src={product.image_url} alt={product.name} />
                                 <h2>{product.price} руб</h2>
                             </Link>
+                            <button onClick={() => addToCart(product.product_id)}>Добавить в корзину</button>
                         </li>
                     ))}
                 </ul>

@@ -17,13 +17,14 @@ const Sign_in = () => {
             });
 
             if (response.data.success) {
-                localStorage.setItem("authToken", "your_secret_token");
+                localStorage.setItem("authToken", response.data.token); // Здесь `token` должен быть возвращен сервером
                 window.location.href = "/products";
             } else {
                 alert(response.data.message);
             }
         } catch (error) {
             console.error("Ошибка авторизации:", error);
+            alert("Не удалось выполнить вход. Проверьте данные и попробуйте снова.");
         }
     };
 
@@ -43,6 +44,7 @@ const Sign_in = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         className={styles["auth-input"]}
+                        required
                     />
                     <input
                         type="password"
@@ -50,6 +52,7 @@ const Sign_in = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className={styles["auth-input"]}
+                        required
                     />
                     <button type="submit" className={styles["auth-button"]}>
                         Войти
