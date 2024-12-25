@@ -17,7 +17,7 @@ const Sign_in = () => {
             });
 
             if (response.data.success) {
-                localStorage.setItem("authToken", response.data.token); // Здесь `token` должен быть возвращен сервером
+                localStorage.setItem("authToken", response.data.token);
                 window.location.href = "/products";
             } else {
                 alert(response.data.message);

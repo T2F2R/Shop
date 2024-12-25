@@ -1,57 +1,50 @@
-/* Основной контейнер для списка продуктов */
 .product-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     padding: 0;
     list-style: none;
-    justify-content: center; /* Центрируем продукты на странице */
+    justify-content: center;
 }
 
-/* Стиль для карточки продукта */
 .product-list li {
-    border: 1px solid #ddd; /* Граница карточки */
-    border-radius: 8px; /* Скругленные углы */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 250px; /* Ширина каждой карточки */
-    text-align: center; /* Текст по центру */
-    background-color: #fff; /* Белый фон */
+    width: 250px;
+    text-align: center;
+    background-color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Эффект наведения на карточку */
 .product-list li:hover {
-    transform: scale(1.05); /* Увеличение карточки */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Более заметная тень */
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Стили для ссылки внутри карточки */
 .product-list li a {
-    text-decoration: none; /* Убираем подчеркивание */
-    color: #333; /* Цвет текста */
+    text-decoration: none;
+    color: #333;
     display: block;
     padding: 10px;
 }
 
-/* Стили для названия продукта */
 .product-list li h2 {
     font-size: 18px;
     margin: 10px 0;
     color: #444;
 }
 
-/* Стили для изображения */
 .product-list li img {
-    width: 100%; /* Изображение на всю ширину карточки */
-    height: auto; /* Автоматическая высота */
-    border-bottom: 1px solid #ddd; /* Разделительная линия */
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Стили для цены */
 .product-list li h2:last-of-type {
     font-size: 20px;
     font-weight: bold;
-    color: #007bff; /* Синий цвет для цены */
+    color: #007bff;
     margin: 10px 0;
 }

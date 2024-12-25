@@ -13,7 +13,7 @@ const Products = () => {
         const fetchProducts = async () => {
             const token = localStorage.getItem("authToken");
             if (!token) {
-                alert("Вы не авторизованы!");
+                window.location.href = "/sign_in";
                 setLoading(false);
                 return;
             }
